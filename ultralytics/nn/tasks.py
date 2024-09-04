@@ -319,10 +319,10 @@ class DetectionModel(BaseModel):
     def _predict_augment(self, x):
         """Perform augmentations on input image x and return augmented inference and train outputs."""
         img_size = x.shape[-2:]  # height, width
-        s = [1, 0.83, 0.67]  # scales
-        f = [None, 3, None]  # flips (2-ud, 3-lr)
+        s = [1, 0.83, 0.63, 1.17, 1.42]  # scales
+        f = [None, None, None, None, 3] # flips (2-ud, 3-lr)
         y = []  # outputs
-        print(f"Input shape: {x.shape}")
+        #print(f"Input shape: {x.shape}")
         for si, fi in zip(s, f):
             xi = scale_img(x.flip(fi) if fi else x, si, gs=int(self.stride.max()))
             yi = super().predict(xi)  # forward
