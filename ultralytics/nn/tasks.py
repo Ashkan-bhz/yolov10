@@ -316,6 +316,24 @@ class DetectionModel(BaseModel):
             self.info()
             LOGGER.info("")
 
+    @staticmethod
+    def augment_hsv(image, hgain=0.0, sgain=0.0, vgain=0.2):
+        
+        """Apply HSV augmentation to an image."""
+      if image.dtype != np.uint8:
+          print("augment_if")
+          image = (image * 255).astype(np.uint8)
+      img_hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
+      h, s, v = cv2.split(img_hsv)
+      h = cv2.add(h, int((np.random.randn() * hgain * 255)))
+      s = cv2.add(s, int((np.random.randn() * sgain * 255)))
+      v = cv2.add(v, int((np.random.randn() * vgain * 255)))
+      img_hsv = cv2.merge((h, s, v))
+      img_hsv = cv2.cvtColor(img_hsv, cv2.COLOR_HSV2RGB)
+      img_hsv = img_hsv.astype(np.float32) / 255.0
+      print("augment_vgain")
+      return torch.from_numpy(img_hsv).permute(2, 0, 1)
+
     def _predict_augment(self, x):
         """Perform augmentations on input image x and return augmented inference and train outputs."""
         img_size = x.shape[-2:]  # height, width
