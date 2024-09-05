@@ -322,7 +322,7 @@ class DetectionModel(BaseModel):
         
         """Apply HSV augmentation to an image."""
         if image.dtype != np.uint8:
-            print("augment_if")
+            #print("augment_if")
             image = (image * 255).astype(np.uint8)
         img_hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
         h, s, v = cv2.split(img_hsv)
@@ -332,7 +332,7 @@ class DetectionModel(BaseModel):
         img_hsv = cv2.merge((h, s, v))
         img_hsv = cv2.cvtColor(img_hsv, cv2.COLOR_HSV2RGB)
         img_hsv = img_hsv.astype(np.float32) / 255.0
-        print("augment_vgain")
+        #print("augment_vgain")
 
         return torch.from_numpy(img_hsv).permute(2, 0, 1)
 
