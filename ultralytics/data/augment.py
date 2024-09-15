@@ -838,6 +838,7 @@ class Albumentations:
             # Transforms
             T = [
                 A.Blur(p=0.01),
+                A.RandomSizedBBoxSafeCrop(height=640,width=640, p=0.2),
                 A.MedianBlur(p=0.01),
                 A.ToGray(p=0.01),
                 A.CLAHE(p=0.01),
