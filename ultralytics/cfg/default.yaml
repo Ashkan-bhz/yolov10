@@ -7,9 +7,9 @@ mode: train # (str) YOLO mode, i.e. train, val, predict, export, track, benchmar
 # Train settings -------------------------------------------------------------------------------------------------------
 model: # (str, optional) path to model file, i.e. yolov8n.pt, yolov8n.yaml
 data: # (str, optional) path to data file, i.e. coco128.yaml
-epochs: 100 # (int) number of epochs to train for
+epochs: 200 # (int) number of epochs to train for
 time: # (float, optional) number of hours to train for, overrides epochs if supplied
-patience: 100 # (int) epochs to wait for no observable improvement for early stopping of training
+patience: 0 # (int) epochs to wait for no observable improvement for early stopping of training
 batch: 16 # (int) number of images per batch (-1 for AutoBatch)
 imgsz: 640 # (int | list) input images size as int for train and val modes, or list[w,h] for predict and export modes
 save: True # (bool) save train checkpoints and predict results
@@ -88,34 +88,34 @@ workspace: 4 # (int) TensorRT: workspace size (GB)
 nms: False # (bool) CoreML: add NMS
 
 # Hyperparameters ------------------------------------------------------------------------------------------------------
-lr0: 0.01 # (float) initial learning rate (i.e. SGD=1E-2, Adam=1E-3)
-lrf: 0.01 # (float) final learning rate (lr0 * lrf)
-momentum: 0.937 # (float) SGD momentum/Adam beta1
-weight_decay: 0.0005 # (float) optimizer weight decay 5e-4
-warmup_epochs: 3.0 # (float) warmup epochs (fractions ok)
-warmup_momentum: 0.8 # (float) warmup initial momentum
-warmup_bias_lr: 0.1 # (float) warmup initial bias lr
-box: 7.5 # (float) box loss gain
-cls: 0.5 # (float) cls loss gain (scale with pixels)
-dfl: 1.5 # (float) dfl loss gain
+lr0: 0.00859 # (float) initial learning rate (i.e. SGD=1E-2, Adam=1E-3)
+lrf: 0.01002 # (float) final learning rate (lr0 * lrf)
+momentum: 0.90476 # (float) SGD momentum/Adam beta1
+weight_decay: 0.00048 # (float) optimizer weight decay 5e-4
+warmup_epochs: 2.7669 # (float) warmup epochs (fractions ok)
+warmup_momentum: 0.8149 # (float) warmup initial momentum
+warmup_bias_lr: 0.087 # (float) warmup initial bias lr
+box: 0.2 # (float) box loss gain
+cls: 0.42541 # (float) cls loss gain (scale with pixels)
+dfl: 1.3003 # (float) dfl loss gain
 pose: 12.0 # (float) pose loss gain
 kobj: 1.0 # (float) keypoint obj loss gain
 label_smoothing: 0.0 # (float) label smoothing (fraction)
 nbs: 64 # (int) nominal batch size
-hsv_h: 0.015 # (float) image HSV-Hue augmentation (fraction)
-hsv_s: 0.7 # (float) image HSV-Saturation augmentation (fraction)
-hsv_v: 0.4 # (float) image HSV-Value augmentation (fraction)
+hsv_h: 0.0157 # (float) image HSV-Hue augmentation (fraction)
+hsv_s: 0.67898 # (float) image HSV-Saturation augmentation (fraction)
+hsv_v: 0.35216 # (float) image HSV-Value augmentation (fraction)
 degrees: 0.0 # (float) image rotation (+/- deg)
-translate: 0.1 # (float) image translation (+/- fraction)
-scale: 0.5 # (float) image scale (+/- gain)
+translate: 0.09829 # (float) image translation (+/- fraction)
+scale: 0.85752 # (float) image scale (+/- gain)
 shear: 0.0 # (float) image shear (+/- deg)
 perspective: 0.0 # (float) image perspective (+/- fraction), range 0-0.001
 flipud: 0.0 # (float) image flip up-down (probability)
 fliplr: 0.5 # (float) image flip left-right (probability)
 bgr: 0.0 # (float) image channel BGR (probability)
-mosaic: 1.0 # (float) image mosaic (probability)
-mixup: 0.0 # (float) image mixup (probability)
-copy_paste: 0.0 # (float) segment copy-paste (probability)
+mosaic:  0.94054 # (float) image mosaic (probability)
+mixup: 0.14487 # (float) image mixup (probability)
+copy_paste: 0.29103 # (float) segment copy-paste (probability)
 auto_augment: randaugment # (str) auto augmentation policy for classification (randaugment, autoaugment, augmix)
 erasing: 0.4 # (float) probability of random erasing during classification training (0-1)
 crop_fraction: 1.0 # (float) image crop fraction for classification evaluation/inference (0-1)
